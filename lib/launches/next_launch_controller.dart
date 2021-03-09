@@ -5,14 +5,15 @@ import 'package:get/get.dart';
 import 'package:space_x/launches/launches_client.dart';
 import 'package:space_x/launches/launches_response.dart';
 
-class LaunchesController extends GetxController {
+class NextLaunchController extends GetxController {
   final _client = LaunchesClient();
   final isLoading = false.obs;
-  Rx<LaunchesState> state;
+  Rx<LaunchState> state;
   Timer timer;
 
-  LaunchesController() {
+  NextLaunchController() {
     _setState(InitialState());
+    getNextLaunch();
   }
 
   void getNextLaunch() async {
@@ -32,12 +33,6 @@ class LaunchesController extends GetxController {
     }
   }
 
-  @override
-  void onClose() {
-    timer?.cancel();
-    super.onClose();
-  }
-
   void _startCountdownTimer() {
     var state = _ensureState<SuccessState>();
     timer = Timer.periodic(Duration(milliseconds: 500), (_) {
@@ -50,7 +45,7 @@ class LaunchesController extends GetxController {
     return prettyDuration(time, abbreviated: true, delimiter: " : ");
   }
 
-  _setState(LaunchesState newState) {
+  _setState(LaunchState newState) {
     if (state == null) {
       state = newState.obs;
     }
@@ -66,17 +61,17 @@ class LaunchesController extends GetxController {
   }
 }
 
-abstract class LaunchesState {}
+abstract class LaunchState {}
 
-class InitialState implements LaunchesState {}
+class InitialState implements LaunchState {}
 
-class ErrorState implements LaunchesState {
+class ErrorState implements LaunchState {
   final String errorMessage;
 
   ErrorState(this.errorMessage);
 }
 
-class SuccessState implements LaunchesState {
+class SuccessState implements LaunchState {
   final Launch launch;
   final RxString countdownTimer = "".obs;
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:space_x/home/home_screen.dart';
 import 'package:space_x/theme/app_theme.dart';
-
-import 'launches/next_launch_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: appTitle,
       theme: themeData,
-      home: NextLaunchScreen(),
+      home: HomeScreen(),
     );
   }
 }
