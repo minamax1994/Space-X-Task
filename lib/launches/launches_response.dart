@@ -2,7 +2,6 @@ import 'dart:convert';
 
 class Launch {
   Launch({
-    this.fairings,
     this.links,
     this.staticFireDateUtc,
     this.staticFireDateUnix,
@@ -31,7 +30,6 @@ class Launch {
     this.id,
   });
 
-  Fairings fairings;
   Links links;
   dynamic staticFireDateUtc;
   dynamic staticFireDateUnix;
@@ -59,12 +57,17 @@ class Launch {
   List<Core> cores;
   String id;
 
+  static List<Launch> listFromJson(String str) {
+    return (json.decode(str) as List)
+        ?.map((e) => e == null ? null : Launch.fromMap(e as Map<String, dynamic>))
+        ?.toList();
+  }
+
   factory Launch.fromJson(String str) => Launch.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory Launch.fromMap(Map<String, dynamic> json) => Launch(
-        fairings: Fairings.fromMap(json["fairings"]),
         links: Links.fromMap(json["links"]),
         staticFireDateUtc: json["static_fire_date_utc"],
         staticFireDateUnix: json["static_fire_date_unix"],
@@ -94,7 +97,6 @@ class Launch {
       );
 
   Map<String, dynamic> toMap() => {
-        "fairings": fairings.toMap(),
         "links": links.toMap(),
         "static_fire_date_utc": staticFireDateUtc,
         "static_fire_date_unix": staticFireDateUnix,
@@ -184,9 +186,9 @@ class Fairings {
     this.ships,
   });
 
-  dynamic reused;
-  dynamic recoveryAttempt;
-  dynamic recovered;
+  bool reused;
+  bool recoveryAttempt;
+  bool recovered;
   List<dynamic> ships;
 
   factory Fairings.fromJson(String str) => Fairings.fromMap(json.decode(str));

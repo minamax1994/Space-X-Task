@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_x/launches/next_launch_controller.dart';
 import 'package:space_x/launches/next_launch_widget.dart';
+import 'package:space_x/launches/past_launches_controller.dart';
 import 'package:space_x/launches/past_launches_widget.dart';
 
 class Page {
@@ -30,12 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     Get.put(NextLaunchController());
+    Get.put(PastLaunchesController());
     super.initState();
   }
 
   @override
   void dispose() {
     Get.delete<NextLaunchController>();
+    Get.delete<PastLaunchesController>();
     super.dispose();
   }
 

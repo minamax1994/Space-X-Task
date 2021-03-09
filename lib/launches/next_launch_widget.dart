@@ -9,19 +9,19 @@ class NextLaunchWidget extends StatefulWidget {
 }
 
 class _NextLaunchWidgetState extends State<NextLaunchWidget> {
-  NextLaunchController launchesController;
+  NextLaunchController controller;
 
   @override
   void initState() {
-    launchesController = Get.find();
+    controller = Get.find();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      var state = launchesController.state?.value;
-      var isLoading = launchesController.isLoading?.value;
+      var state = controller.state?.value;
+      var isLoading = controller.isLoading?.value;
 
       if (isLoading) {
         return Center(child: CircularProgressIndicator());
@@ -45,21 +45,21 @@ Widget buildDetails(SuccessState state) {
     child: RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: AppStyles.subtitleStyle,
+        style: AppStyles.titleStyle,
         children: <TextSpan>[
           TextSpan(
             text: "Next launch of\n\n",
           ),
           TextSpan(
             text: state.launch.name,
-            style: AppStyles.titleStyle,
+            style: AppStyles.headerStyle,
           ),
           TextSpan(
             text: "\n\n will be in\n\n",
           ),
           TextSpan(
             text: state.countdownTimer.value,
-            style: AppStyles.titleStyle,
+            style: AppStyles.headerStyle,
           ),
         ],
       ),

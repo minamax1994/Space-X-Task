@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: appTitle,
       theme: themeData,
-      home: HomeScreen(),
+      home: HomeScreen(title: appTitle),
     );
   }
 }

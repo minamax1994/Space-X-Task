@@ -22,4 +22,22 @@ class LaunchesClient {
       errorMessage: fallbackErrorMessage,
     );
   }
+
+  Future<ApiResult<List<Launch>>> getPastLaunches() async {
+    var relativeUrl = "/launches/past";
+    var response = await ApiCalls.get(relativeUrl);
+    try {
+      final result = Launch.listFromJson(response.body);
+
+      if (response.statusCode == 200) {
+        return ApiResult<List<Launch>>(isSuccess: true, data: result);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return ApiResult(
+      isSuccess: false,
+      errorMessage: fallbackErrorMessage,
+    );
+  }
 }
