@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_x/launches/next_launch_controller.dart';
-import 'package:space_x/launches/next_launch_widget.dart';
-import 'package:space_x/launches/past_launches_controller.dart';
-import 'package:space_x/launches/past_launches_widget.dart';
+import 'package:space_x/launches/next/next_launch_controller.dart';
+import 'package:space_x/launches/next/next_launch_widget.dart';
+import 'package:space_x/launches/past/past_launches_controller.dart';
+import 'package:space_x/launches/past/past_launches_widget.dart';
 
 class Page {
   final String title;

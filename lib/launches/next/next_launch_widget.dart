@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_x/launches/next_launch_controller.dart';
+import 'package:space_x/launches/next/next_launch_controller.dart';
 import 'package:space_x/theme/app_theme.dart';
 
-class NextLaunchWidget extends StatefulWidget {
-  @override
-  _NextLaunchWidgetState createState() => _NextLaunchWidgetState();
-}
-
-class _NextLaunchWidgetState extends State<NextLaunchWidget> {
+class NextLaunchWidget extends StatelessWidget {
   NextLaunchController controller;
 
   @override
-  void initState() {
-    controller = Get.find();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    controller = Get.find();
+
     return Obx(() {
       var state = controller.state?.value;
       var isLoading = controller.isLoading?.value;

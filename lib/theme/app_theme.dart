@@ -25,4 +25,10 @@ class AppStyles {
     color: AppColors.secondaryColor,
     fontSize: 16,
   );
+
+  static const TextStyle subtitleBoldStyle = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 }

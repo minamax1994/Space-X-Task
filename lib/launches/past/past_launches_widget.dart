@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:space_x/launches/past_launches_controller.dart';
+import 'package:space_x/launches/past/past_launches_controller.dart';
 import 'package:space_x/ui_components/date_time_filter_widget.dart';
 import 'file:///C:/Users/MinaHamdy/FlutterProjects/space_x/lib/launches/launches_list_item_widget.dart';
 
-class PastLaunchesWidget extends StatefulWidget {
-  @override
-  _PastLaunchesWidgetState createState() => _PastLaunchesWidgetState();
-}
-
-class _PastLaunchesWidgetState extends State<PastLaunchesWidget> {
+class PastLaunchesWidget extends StatelessWidget {
   PastLaunchesController controller;
 
   @override
-  void initState() {
-    controller = Get.find();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    controller = Get.find();
+
     return Obx(() {
       var state = controller.state?.value;
       var isLoading = controller.isLoading?.value;
