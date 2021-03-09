@@ -4,7 +4,9 @@ import 'package:space_x/launches/launches_response.dart';
 import 'package:space_x/launchpad/launchpad_controller.dart';
 import 'package:space_x/payload/payload_controller.dart';
 import 'package:space_x/rocket/rocket_controller.dart';
+import 'package:space_x/theme/app_theme.dart';
 import 'package:space_x/ui_components/data_card_widget.dart';
+import 'package:url_launcher/url_launcher.dart' as url;
 
 class LaunchDetailsScreen extends StatelessWidget {
   final Launch launch;
@@ -30,10 +32,30 @@ class LaunchDetailsScreen extends StatelessWidget {
             buildLaunchpadDetails(),
             buildRocketDetails(),
             buildPayloadDetails(),
+            SizedBox(height: 50),
           ],
         ),
       ),
+      floatingActionButton: buildVideoButton(),
     );
+  }
+
+  Widget buildVideoButton() {
+    return launch.links?.webcast == null || launch.links.webcast.trim().isEmpty
+        ? Container()
+        : FloatingActionButton(
+            backgroundColor: AppColors.primaryColor,
+            child: Icon(Icons.ondemand_video, color: AppColors.primaryContrastingColor),
+            onPressed: () async => await url.canLaunch(launch.links?.webcast)
+                ? await url.launch(launch.links?.webcast)
+                : Get.showSnackbar(
+                    GetBar(
+                      message: "Could not launch url.",
+                      duration: Duration(seconds: 3),
+                      animationDuration: Duration(milliseconds: 100),
+                    ),
+                  ),
+          );
   }
 
   buildLaunchDetails() {
