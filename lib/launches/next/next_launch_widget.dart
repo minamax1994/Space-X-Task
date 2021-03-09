@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:space_x/launches/details/launch_details_screen.dart';
 import 'package:space_x/launches/next/next_launch_controller.dart';
 import 'package:space_x/theme/app_theme.dart';
 
@@ -43,7 +45,8 @@ Widget buildDetails(SuccessState state) {
           ),
           TextSpan(
             text: state.launch.name,
-            style: AppStyles.headerStyle,
+            style: AppStyles.headerStyle.copyWith(decoration: TextDecoration.underline),
+            recognizer: TapGestureRecognizer()..onTap = () => Get.to(() => LaunchDetailsScreen(state.launch)),
           ),
           TextSpan(
             text: "\n\n will be in\n\n",
