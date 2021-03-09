@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:space_x/launches/past_launches_controller.dart';
-import 'package:space_x/ui_components/LaunchesListItemWidget.dart';
+import 'package:space_x/ui_components/date_time_filter_widget.dart';
+import 'file:///C:/Users/MinaHamdy/FlutterProjects/space_x/lib/launches/launches_list_item_widget.dart';
 
 class PastLaunchesWidget extends StatefulWidget {
   @override
@@ -32,9 +33,22 @@ class _PastLaunchesWidgetState extends State<PastLaunchesWidget> {
       }
 
       if (state is SuccessState) {
-        return ListView.builder(
-          itemCount: state.launches.length,
-          itemBuilder: (BuildContext context, int index) => LaunchesListItemWidget(launch: state.launches[index]),
+        return Column(
+          children: [
+            DateTimeSpanPickerWidget(
+              selectedDates: controller.filterDateTime,
+            ),
+            Flexible(
+              child: state.filteredLaunches.isEmpty
+                  ? Center(child: Text("No Launches Found"))
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.filteredLaunches.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          LaunchesListItemWidget(launch: state.filteredLaunches[index]),
+                    ),
+            ),
+          ],
         );
       }
 

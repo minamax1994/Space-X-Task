@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   final themeData = ThemeData(
     primaryColor: AppColors.primaryColor,
+    accentColor: AppColors.secondaryColor,
     backgroundColor: AppColors.backgroundColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     appBarTheme: AppBarTheme(
