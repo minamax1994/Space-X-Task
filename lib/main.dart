@@ -1,22 +1,33 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:space_x/theme/app_theme.dart';
 
-import 'home/home_screen.dart';
+import 'launches/next_launch_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final appTitle = 'Space-X';
+
+  final themeData = ThemeData(
+    primaryColor: AppColors.primaryColor,
+    backgroundColor: AppColors.backgroundColor,
+    scaffoldBackgroundColor: AppColors.backgroundColor,
+    appBarTheme: AppBarTheme(
+      elevation: 0.0,
+      centerTitle: true,
+      color: AppColors.primaryColor,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      title: 'Space-X',
-      theme: CupertinoThemeData(
-        primaryColor: Color(0xFF005288),
-        primaryContrastingColor: Color(0xFFE6EEF3),
-        scaffoldBackgroundColor: Color(0xFFA7A9AC),
-      ),
-      home: HomeScreen(),
+    return GetMaterialApp(
+      title: appTitle,
+      theme: themeData,
+      home: NextLaunchScreen(),
     );
   }
 }
